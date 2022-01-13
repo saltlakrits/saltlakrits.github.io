@@ -17,12 +17,20 @@
     <div class="window">
         <div class="contentDiv">
             <button id="showNav">☰</button>
-            <h1><span>Canvas demo</span></h1>
-            <div class="canvasContainer">
-                <canvas class="drawingCanvas" width="500" height="200"></canvas>
-                <div class="absoluteChild">Snazzy textbox, with flashy animation in a canvas around the cursor!
+            <h1>Canvas demo</h1>
+            <div id="badgesDiv-demo">
+                <div class="canvasContainer">
+                    <canvas class="drawingCanvas" width="500" height="200"></canvas>
+                    <div class="absoluteChild">Snazzy textbox, with flashy animation in a canvas around the cursor!
+                    </div>
+                </div>
+                <div id="badgeDemoText">A textbox, figured out how to scale it depending on viewport
+                    size and whatnot. Learned quite a bit toying around with this, and
+                    I do think it looks pretty fancy.
                 </div>
             </div>
+            <hr class="demo-hr">
+
         </div>
         <div id="nav" class="nav">
             <button type="button" onclick="window.open('../index.html', '_top')" class="navButton">Home</button>
@@ -32,10 +40,8 @@
         </div>
     </div>
 
-
-
-    <script src="canvas.js"></script>
     <script src="../index.js"></script>
+    <script src="canvas.js"></script>
 </body>
 
 </html>

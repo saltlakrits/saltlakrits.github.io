@@ -26,7 +26,7 @@ let toggleDisplay = (e) => {
 }
 
 
-let child2elements = document.getElementsByClassName("child2");
+let child2elements = document.getElementsByClassName("alternating");
 for (let i = 0; i < child2elements.length; i++) {
     child2elements[i].addEventListener('mouseover', () => {
         child2elements[i].innerHTML = "<div>You can hide some text inside these bubbles to show on mouseover!</div>"

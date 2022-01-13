@@ -111,10 +111,15 @@ let checkWin = () => {
     return (buildString().replace(/ /g, "").toLowerCase() == randomWord);
 }
 
+
+
 // hijacks the default behavior of form to run javascript
 // instead of trying to send off the info to somewhere else and
 // reloading the page. realistically this lets you kinda do
 // whatever you want by overriding behavior with js though?
+
+// now that i am a tiny bit wiser -- do i really need to listen for load..?
+// TODO experiment with that
 window.addEventListener("load", () => {
 
     setOutput("hangmanOutput", buildString());

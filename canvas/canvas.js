@@ -1,13 +1,43 @@
-let bubbleRadius = 0;
-let mouseTime;
-
 const MaxBubbleRadius = 150;
 const BackgroundColor = "#202020";
 // const BubbleColor = "#3b0066";
 const BubbleColor = "#342160";
 
-// TODO event: mouse leaves window, reset bubble size and kill timers
-// perhaps not needed?
+// from this, the width, height, and canvastext width/height are also set.
+// this does not, however, account for text. currently you can't put
+// arbitrary amounts of text in the badges without it overflowing.
+
+/* THE SOLUTION IS SO SIMPLE JUST
+ set text width from canvas width -> set canvas height from text height
+ if you want all badges to be of the same dimensions, even with different
+ text, you could then do a final loop and set the same height for all of
+ that class
+ 1. set canvas width depending on viewport width
+ 2. set text width depending on canvas width
+ 3. set canvas height depending on text height
+ can (but don't have to) then ensure that all canvases have the same height */
+// the above does depend on whether text height will automatically adjust or not
+const MaxCanvasWidth = 400;
+const MinCanvasWidth = 350;
+
+
+// if you have more text to fit, play with these
+// when canvas is max width, multiply by this to get corresponding height
+const MaxCanvasModifier = 0.5;
+// ditto for min width
+const MinCanvasModifier = 0.5;
+
+
+// TODO: currently on touchscreens pressing on the canvases generates
+// a bubble, which doesn't go away. possible to check for touch device?
+// otherwise think of a way to clear them or otherwise stop that from
+// happening
+// maybe just listen for click.......?
+
+
+// these need to be in global scope, because i suck
+let bubbleRadius = 0;
+let mouseTime;
 
 const initializeCanvas = (e) => {
     let ctx = e.getContext("2d");
@@ -69,17 +99,41 @@ const canvasMousemove = (e) => {
     }
 }
 
+const setCanvasDimensions = (el) => {
+    let sizeCheck = document.documentElement.clientWidth * 0.4;
+    if (sizeCheck > MaxCanvasWidth) {
+        el.width = MaxCanvasWidth;
+        el.height = el.width * MaxCanvasModifier;
+    }
+    else {
+        el.width = MinCanvasWidth;
+        el.height = el.width * MinCanvasModifier;
+    }
+}
+
+const setCanvasTextDimensions = (el, canvas) => {
+    el.style.width = `${canvas.width * 0.9}px`;
+    el.style.height = `${canvas.height * 0.85}px`;
+}
+
 let canvases = document.getElementsByClassName("drawingCanvas");
+let canvasTexts = document.getElementsByClassName("absoluteChild");
 
 for (let i = 0; i < canvases.length; i++) {
 
-    var el = canvases[i];
+    let el = canvases[i];
+    let elText = canvasTexts[i];
+
+    setCanvasDimensions(el);
+
+    setCanvasTextDimensions(canvasTexts[i], el)
+
+    window.addEventListener('resize', () => {
+        setCanvasDimensions(el);
+        setCanvasTextDimensions(elText, el);
+        initializeCanvas(el);
+    });
     initializeCanvas(el);
     el.addEventListener("mouseout", (e) => canvasMouseOut(e));
     el.addEventListener("mousemove", (e) => canvasMousemove(e));
 }
-
-// will need to make this work for arbitrary canvas sizes
-// may also at that point need to listen for window resize event,
-// if that exists as such, and run the initializeCanvas function on all the
-// canvases again
