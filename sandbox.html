@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link rel="stylesheet" href="sandbox.css">
+    <link rel="icon" type="image/x-icon" href="media/favicon.ico">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+
+    <title>
+        My Sandbox
+    </title>
+</head>
+
+<body>
+
+    <div class="nav">
+        <button type="button" onclick="window.open('sandbox.html', '_top')" class="navButton">Home</button>
+        <button type="button" onclick="window.open('hangman/hangman.html', '_top')" class="navButton">Hangman</button>
+        <button type="button" onclick="window.open('canvas/canvas.html', '_top')" class="navButton">Canvas</button>
+    </div>
+
+    <div class="contentDiv">
+        <h1 id="pageHeading"><span id="headingSpan">This is a sandbox</span id="headingSpan"></h1>
+
+        <div id="currentTime">Time loading...</div>
+
+        <div id="buttonDiv">
+            <button type="button" onclick="toggleDisplay('firstDiv')">Would you like to visit Reddit?</button>
+        </div>
+
+        <div id="firstDiv">
+
+            <!-- <audio controls>
+                    <source src="media/rain.mp3" type="audio/mpeg">
+                    Can't play audio.
+                </audio> -->
+
+            <div class="firstChild" id="redditText">You can go to Reddit, if you like.</div>
+            <div class="firstChild"><a href="https://old.reddit.com/">
+                    <img id="redditIcon" title="Go to Reddit"
+                        src="https://www.redditinc.com/assets/images/site/reddit-logo.png" width="100"
+                        height="auto"></a></div>
+
+
+
+        </div>
+
+        <div id="secondDiv">
+
+            <img id="catPic"
+                src="https://1734811051.rsc.cdn77.org/data/images/full/372135/attn-cat-lovers-scientists-claim-using-profile-pics-of-your-and-your-cat-wont-give-you-a-date.jpg"
+                width="200" height="auto" alt="Look at this beautiful motherfucker."
+                title="Look at this beautiful motherfucker.">
+
+            <p>I don't have anything to really put here, so here is a cute kitten.</p>
+
+            <!-- <p>A quote from reddit:</p>
+                <blockquote cite="www.reddit.com"><q>jfc</q></blockquote> -->
+
+        </div>
+
+        <div id="badgesDiv">
+            <div class="canvasContainer">
+                <canvas class="drawingCanvas" width="500" height="200"></canvas>
+                <div class="absoluteChild">Snazzy textbox, with flashy animation in a canvas around the cursor! Snazzy textbox, with flashy animation in a canvas around the cursor! Snazzy textbox, with flashy animation in a canvas around the cursor!</div>
+            </div>
+            <div class="canvasContainer">
+                <canvas class="drawingCanvas" width="500" height="200"></canvas>
+                <div class="absoluteChild">Snazzy textbox, with flashy animation in a canvas around the cursor! Snazzy textbox, with flashy animation in a canvas around the cursor! Snazzy textbox, with flashy animation in a canvas around the cursor!</div>
+            </div>
+            <div class="canvasContainer">
+                <canvas class="drawingCanvas" width="500" height="200"></canvas>
+                <div class="absoluteChild">Snazzy textbox, with flashy animation in a canvas around the cursor! Snazzy textbox, with flashy animation in a canvas around the cursor! Snazzy textbox, with flashy animation in a canvas around the cursor!</div>
+            </div>
+            <div class="canvasContainer">
+                <canvas class="drawingCanvas" width="500" height="200"></canvas>
+                <div class="absoluteChild">Snazzy textbox, with flashy animation in a canvas around the cursor! Snazzy textbox, with flashy animation in a canvas around the cursor! Snazzy textbox, with flashy animation in a canvas around the cursor!</div>
+            </div>
+        </div>
+
+        <div id="verticalDiv2">
+            <div class="child2">
+                <div>This is a div of class child2 on a grid. There are empty divs filling up the blank spots in the grid.</div>
+            </div>
+            <div class="child2empty"></div>
+            <div class="child2empty"></div>
+            <div class="child2">
+                <div>This is a div of class child2 on a grid. There are empty divs filling up the blank spots in the grid.</div>
+            </div>
+            <div class="child2">
+                <div>This is a div of class child2 on a grid. There are empty divs filling up the blank spots in the grid.</div>
+            </div>
+            <div class="child2empty"></div>
+            <div class="child2empty"></div>
+            <div class="child2">
+                <div>This is a div of class child2 on a grid. There are empty divs filling up the blank spots in the grid.</div>
+            </div>
+        </div>
+    </div>
+
+    <script src="sandbox.js"></script>
+    <script src="canvas/canvas.js"></script>
+</body>
+
+</html>

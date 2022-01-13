@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <link rel="stylesheet" href="../sandbox.css">
+    <link rel="icon" type="image/x-icon" href="../media/favicon.ico">
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta charset="UTF-8">
+
+    <title>
+        My Sandbox
+    </title>
+</head>
+
+<body>
+    <div class="nav">
+        <button type="button" onclick="window.open('../sandbox.html', '_top')" class="navButton">Home</button>
+        <button type="button" onclick="window.open('../hangman/hangman.html', '_top')"
+            class="navButton">Hangman</button>
+        <button type="button" onclick="window.open('canvas.html', '_top')" class="navButton">Canvas</button>
+    </div>
+
+    <div class="contentDiv">
+        <h1><span>Canvas demo</span></h1>
+        <div class="canvasContainer">
+            <canvas class="drawingCanvas" width="500" height="200"></canvas>
+            <div class="absoluteChild">Snazzy textbox, with flashy animation in a canvas around the cursor!</div>
+        </div>
+    </div>
+    <script src="canvas.js"></script>
+</body>
+
+</html>
