@@ -15,19 +15,13 @@ body {
     color: #ccc;
 }
 
-div {
-    /* border: 2px solid lightseagreen;
-    border-radius: 10px; */
-    margin-top: 10px;
-}
-
 h1 {
     background-color:#191919;
     border:2px solid #342160;
     border-radius: 4px;
     margin-left: 10%;
     margin-right: 50%;
-    max-width: 50%;
+    max-width: 25%;
     font-weight:400;
     /* text-align: left;
     padding-left: 5rem;
@@ -80,27 +74,60 @@ h1:hover:before {
     width: 20%; */
 }
 
-.nav {
-    position: fixed;
-    float: left;
-    top: 0px;
-    border: none;
-    border-radius: 0px;
-    background-color: #181818;
-    border-right: 1px solid #5c3bab;
-    margin-top: 0;
-    height: 100%;
-    width: 10%;
-    /* min-width: 10%; */
+.window {
+    display: flex;
 }
 
+#showNav {
+    float: right;
+    position: sticky;
+    top: 4%;
+    margin-right: 1%;
+    /* opacity: 0.5; */
+    border: 1px solid #333;
+    border-radius: 5px;
+    color: #ccc;
+    background: #111;
+    display: block;
+    transform: scale(2, 2);
+    opacity: 0.25;
+}
+
+#showNav:hover {
+    transition-duration: 0.25s;
+    cursor: pointer;
+    background-color: #8567cb;
+    border: 2px solid #222;
+    color: black;
+    opacity: 1;
+}
+
+.nav {
+    position: sticky;
+    top: 0;
+    flex: 2;
+    background-color: #181818;
+    border-left: 1px solid #5c3bab;
+    margin-top: 0px;
+    padding-top: 0;
+    height: 100vh;
+    opacity: 0.75;
+    max-width: 200px;
+    /* min-width: 10%; */
+    display: none;
+}
+.navButtonGroup {
+    width: 100%;
+    height: 100%;
+    margin-top: 0px;
+    padding: 0;
+}
 .navButton {
     display: block;
-    margin: none;
+    margin: 0px;
     width: 100%;
     border: 1px solid black;
     border-radius: none;
-    margin-top: none;
     background-color: #5c3bab;
     color: whitesmoke;
     min-height: 5%;
@@ -114,11 +141,7 @@ h1:hover:before {
 }
 
 .contentDiv {
-    float: left;
-    border: none;
-    margin-top: none;
-    margin-left: 10%;
-    width: 90%;
+    flex: 8;
 }
 
 #currentTime {
@@ -219,6 +242,7 @@ layout is a bad habit, which it probably is, don't do this. */
     text-align: center;
     min-height: 75px;
     vertical-align: baseline;
+    max-height: 10%;
 }
 .child2:hover {
     background-color: #8567cb;

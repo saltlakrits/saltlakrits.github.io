@@ -35,3 +35,15 @@ for (let i = 0; i < child2elements.length; i++) {
         child2elements[i].innerHTML = "<div>This is a div of class child2 on a grid. There are empty divs filling up the blank spots in the grid.</div>"
     })
 }
+
+showNav.addEventListener('click', (e) => {
+    let element = document.getElementById("nav");
+    let style = document.defaultView.getComputedStyle(element);
+
+    if (style["display"] == "none"){
+        element.style.display = "block";
+    }
+    else{
+        element.style.display = "none";
+    }
+})

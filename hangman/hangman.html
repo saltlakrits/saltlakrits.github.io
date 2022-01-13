@@ -4,7 +4,7 @@
 <head>
     <link rel="stylesheet" href="../sandbox.css" />
     <link rel="icon" href="../media/favicon.ico" />
-    <script src="hangman.js"></script>
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta charset="UTF-8">
 
@@ -14,34 +14,44 @@
 </head>
 
 <body>
-    <div class="nav">
-        <button type="button" onclick="window.open('../index.html', '_top')" class="navButton">Home</button>
-        <button type="button" onclick="window.open('hangman.html', '_top')" class="navButton">Hangman</button>
-        <button type="button" onclick="window.open('../canvas/canvas.html', '_top')" class="navButton">Canvas</button>
-    </div>
 
-    <div class="contentDiv">
-        <!-- TODO: make this a different span than the homepage one -->
-        <h1><span>Hangman&#128516</span></h1>
+    <div class="window">
+        <div class="contentDiv">
+            <button id="showNav">☰</button>
+            <!-- TODO: make this a different span than the homepage one -->
+            <h1><span>Hangman&#128516</span></h1>
 
-        <div class="hangmanOutput">
-            <div id="hangmanOutput">
-                Sample
+            <div class="hangmanOutput">
+                <div id="hangmanOutput">
+                    Sample
+                </div>
+                <div id="hangmanSecondary"></div>
             </div>
-            <div id="hangmanSecondary"></div>
+
+            <div>
+                <form id="hangmanForm">
+                    <label id="hangmanInputLabel" for="hangmanInput">Enter your guess: </label>
+                    <input id="hangmanInput" type="text">
+                </form>
+            </div>
+            <div>
+                <button id="playAgainButton" type="button" onclick="reInitialize()">Play again?</button>
+                <!-- style="display:none;" by default -->
+            </div>
+
+        </div>
+        <div id="nav" class="nav">
+            <button type="button" onclick="window.open('../index.html', '_top')" class="navButton">Home</button>
+            <button type="button" onclick="window.open('hangman.html', '_top')" class="navButton">Hangman</button>
+            <button type="button" onclick="window.open('../canvas/canvas.html', '_top')"
+                class="navButton">Canvas</button>
         </div>
 
-        <div>
-            <form id="hangmanForm">
-                <label id="hangmanInputLabel" for="hangmanInput">Enter your guess: </label>
-                <input id="hangmanInput" type="text">
-            </form>
-        </div>
-        <div>
-            <button id="playAgainButton" type="button" onclick="reInitialize()">Play again?</button>
-            <!-- style="display:none;" by default -->
-        </div>
+
+
     </div>
+
+    <script src="hangman.js"></script>
 </body>
 
 </html>

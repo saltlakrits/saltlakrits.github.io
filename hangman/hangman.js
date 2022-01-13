@@ -142,4 +142,16 @@ window.addEventListener("load", () => {
 
         document.getElementById("hangmanInput").value = "";
     })
+
+    showNav.addEventListener('click', (e) => {
+        let element = document.getElementById("nav");
+        let style = document.defaultView.getComputedStyle(element);
+    
+        if (style["display"] == "none"){
+            element.style.display = "block";
+        }
+        else{
+            element.style.display = "none";
+        }
+    })
 });
