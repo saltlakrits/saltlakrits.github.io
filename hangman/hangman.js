@@ -31,7 +31,6 @@ let guessedWords = [];
 let descriptiveEmoji = "";
 
 
-// function to reset variables if user presses "play again" or similar, NYI so unused
 // this is overdoing it since you can just reload the page, but that's unimportant
 let reInitialize = () => {
     randomWord = arrayOfNouns()[getRandInt(184)].toLowerCase();
@@ -148,15 +147,9 @@ window.addEventListener("load", () => {
         document.getElementById("hangmanInput").value = "";
     })
 
-    showNav.addEventListener('click', (e) => {
+    showNav.addEventListener('click', () => {
         let element = document.getElementById("nav");
-        let style = document.defaultView.getComputedStyle(element);
-    
-        if (style["display"] == "none"){
-            element.style.display = "block";
-        }
-        else{
-            element.style.display = "none";
-        }
+        element.classList.toggle("open");
+        console.log(element.classList);
     })
 });

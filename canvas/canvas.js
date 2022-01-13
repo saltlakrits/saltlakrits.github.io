@@ -16,6 +16,9 @@ const BubbleColor = "#342160";
  2. set text width depending on canvas width
  3. set canvas height depending on text height
  can (but don't have to) then ensure that all canvases have the same height */
+// final loop to equalize all heights can use another class than before. this
+// would allow you to group different badges that you want of equal size, and
+// still just run a loop over the rest to set theirs.
 // the above does depend on whether text height will automatically adjust or not
 const MaxCanvasWidth = 400;
 const MinCanvasWidth = 350;
@@ -33,6 +36,7 @@ const MinCanvasModifier = 0.5;
 // otherwise think of a way to clear them or otherwise stop that from
 // happening
 // maybe just listen for click.......?
+// you can just listen for touch, touchmove etc but screw that for now
 
 
 // these need to be in global scope, because i suck
@@ -41,8 +45,7 @@ let mouseTime;
 
 const initializeCanvas = (e) => {
     let ctx = e.getContext("2d");
-    ctx.fillStyle = BackgroundColor;
-    ctx.fillRect(0, 0, e.clientWidth, e.clientHeight);
+    ctx.clearRect(0, 0, e.clientWidth, e.clientHeight);
 }
 
 const getMousePos = (e) => {
@@ -77,8 +80,7 @@ const canvasMouseOut = (e) => {
 
     // after shrinking, now make it blank
     setTimeout(() => {
-        ctx.fillStyle = BackgroundColor;
-        ctx.fillRect(0, 0, target.clientWidth, target.clientHeight);
+        ctx.clearRect(0, 0, target.clientWidth, target.clientHeight);
     }, 105);
     bubbleRadius = 0;
     clearTimeout(mouseTime);

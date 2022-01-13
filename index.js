@@ -26,24 +26,30 @@ let toggleDisplay = (e) => {
 }
 
 
-let child2elements = document.getElementsByClassName("alternating");
-for (let i = 0; i < child2elements.length; i++) {
-    child2elements[i].addEventListener('mouseover', () => {
-        child2elements[i].innerHTML = "<div>You can hide some text inside these bubbles to show on mouseover!</div>"
+let alternating = document.getElementsByClassName("alternating");
+for (let i = 0; i < alternating.length; i++) {
+    alternating[i].addEventListener('mouseover', () => {
+        alternating[i].innerHTML = "<div>You can hide some text inside these bubbles to show on mouseover!</div>"
     })
-    child2elements[i].addEventListener('mouseout', () => {
-        child2elements[i].innerHTML = "<div>This is a div of class child2 on a grid. There are empty divs filling up the blank spots in the grid.</div>"
+    alternating[i].addEventListener('mouseout', () => {
+        alternating[i].innerHTML = "<div>Whatevs.</div>"
     })
 }
 
-showNav.addEventListener('click', (e) => {
-    let element = document.getElementById("nav");
-    let style = document.defaultView.getComputedStyle(element);
+// showNav.addEventListener('click', () => {
+//     let element = document.getElementById("nav");
+//     let style = document.defaultView.getComputedStyle(element);
 
-    if (style["display"] == "none"){
-        element.style.display = "block";
-    }
-    else{
-        element.style.display = "none";
-    }
+//     if (style["display"] == "none"){
+//         element.style.display = "block";
+//     }
+//     else{
+//         element.style.display = "none";
+//     }
+// })
+
+showNav.addEventListener('click', () => {
+    let element = document.getElementById("nav");
+    element.classList.toggle("open");
+    console.log(element.classList);
 })
