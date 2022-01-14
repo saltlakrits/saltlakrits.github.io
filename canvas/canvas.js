@@ -1,3 +1,4 @@
+// bubbleRadius must be divisible by 10;
 const MaxBubbleRadius = 150;
 const BackgroundColor = "#202020";
 // const BubbleColor = "#3b0066";

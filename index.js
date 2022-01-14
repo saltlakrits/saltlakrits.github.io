@@ -26,15 +26,6 @@ let toggleDisplay = (e) => {
 }
 
 
-let alternating = document.getElementsByClassName("alternating");
-for (let i = 0; i < alternating.length; i++) {
-    alternating[i].addEventListener('mouseover', () => {
-        alternating[i].innerHTML = "<div>You can hide some text inside these bubbles to show on mouseover!</div>"
-    })
-    alternating[i].addEventListener('mouseout', () => {
-        alternating[i].innerHTML = "<div>Whatevs.</div>"
-    })
-}
 
 // showNav.addEventListener('click', () => {
 //     let element = document.getElementById("nav");
@@ -53,3 +44,45 @@ showNav.addEventListener('click', () => {
     element.classList.toggle("open");
     console.log(element.classList);
 })
+
+const grabDimensions = (e) => {
+    const target = e.target;
+    const rect = target.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    return [x, y];
+}
+
+const backgroundString = (x, y, p) => `#222 radial-gradient(circle at ${x}px ${y}px, #342160 0%, #222 calc(0% + ${p}px))`;
+
+let bubbleWidth = 0;
+let timerID;
+
+const mouseMove = (e) => {
+    const [x, y] = grabDimensions(e);
+    e.target.style.background = backgroundString(x, y, bubbleWidth);
+
+    if (bubbleWidth < 150) {
+        bubbleWidth += 10;
+        timerID = setTimeout(() => {
+            mouseMove(e);
+        }, 10);
+    }
+}
+
+let alts = document.querySelectorAll(".alternating");
+for (let i = 0; i < alts.length; i++) {
+    alts[i].addEventListener('mousemove', (e) => {
+        mouseMove(e);
+    })
+    alts[i].addEventListener('mouseout', (e) => {
+        bubbleWidth = 0;
+        const [x, y] = grabDimensions(e);
+        e.target.style.background = backgroundString(x, y, 150);
+        for (let j = 150; j >= 0; j = j - 10) {
+            setTimeout(() => {
+                e.target.style.background = backgroundString(x, y, j);
+            }, 150 - j);
+        }
+    })
+}
