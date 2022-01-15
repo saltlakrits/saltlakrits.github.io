@@ -123,7 +123,7 @@ window.addEventListener("load", () => {
 
     setOutput("hangmanOutput", buildString());
     setOutput("hangmanSecondary",
-        "Enter a letter to guess a letter, or try to guess the entire word!");
+        "Enter a letter to guess a letter, or try to guess the entire word!\n(If you're a filthy cheater, check the log)");
 
     const form = document.getElementById("hangmanForm");
     form.addEventListener("submit", (event) => {
