@@ -4,23 +4,7 @@ const BackgroundColor = "#202020";
 // const BubbleColor = "#3b0066";
 const BubbleColor = "#342160";
 
-// from this, the width, height, and canvastext width/height are also set.
-// this does not, however, account for text. currently you can't put
-// arbitrary amounts of text in the badges without it overflowing.
 
-/* THE SOLUTION IS SO SIMPLE JUST
- set text width from canvas width -> set canvas height from text height
- if you want all badges to be of the same dimensions, even with different
- text, you could then do a final loop and set the same height for all of
- that class
- 1. set canvas width depending on viewport width
- 2. set text width depending on canvas width
- 3. set canvas height depending on text height
- can (but don't have to) then ensure that all canvases have the same height */
-// final loop to equalize all heights can use another class than before. this
-// would allow you to group different badges that you want of equal size, and
-// still just run a loop over the rest to set theirs.
-// the above does depend on whether text height will automatically adjust or not
 const MaxCanvasWidth = 400;
 const MinCanvasWidth = 350;
 
@@ -32,12 +16,8 @@ const MaxCanvasModifier = 0.5;
 const MinCanvasModifier = 0.5;
 
 
-// TODO: currently on touchscreens pressing on the canvases generates
-// a bubble, which doesn't go away. possible to check for touch device?
-// otherwise think of a way to clear them or otherwise stop that from
-// happening
-// maybe just listen for click.......?
-// you can just listen for touch, touchmove etc but screw that for now
+// you can just listen for touch, touchmove etc to fix this on phones
+// probably hacky solution
 
 
 // these need to be in global scope, because i suck
