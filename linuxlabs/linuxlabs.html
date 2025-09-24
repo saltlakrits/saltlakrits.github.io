@@ -3,20 +3,6 @@
 <head>
   <title>Unbooked Linux labs @ LiU</title>
 
-<style>
-    /* Styles for the debug box to make it visible */
-    #debug-info {
-      background-color: #ffffe0; /* Light yellow */
-			color: #000000;
-      border: 2px solid #ccc;
-      padding: 10px;
-      margin: 10px;
-      font-family: monospace; /* Easy to read text */
-      font-size: 12px;
-      word-wrap: break-word; /* Prevents long strings from overflowing */
-    }
-  </style>
-
 	<script>
 		function getPlatform() {
 			// 1. Try the modern, preferred method first
@@ -47,21 +33,6 @@
 			
 			return 'platform-other';
 		}
-
-    window.onload = function() {
-      const platformClass = getPlatform();
-
-      const userAgentString = navigator.userAgent;
-
-      const debugElement = document.getElementById('debug-info');
-
-      debugElement.innerHTML = 
-        '<strong>Detected Platform Class:</strong> ' + platformClass + 
-        '<hr>' + // A horizontal line for separation
-        '<strong>Full User Agent String:</strong> ' + userAgentString;
-      
-      document.documentElement.className = platformClass;
-    }
 
 		document.documentElement.className = getPlatform();
 	</script>
