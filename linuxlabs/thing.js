@@ -1,4 +1,4 @@
-console.log(document.documentElement.className);
+// console.log(document.documentElement.className);
 
 // constants
 const URL = "../data/schedule.csv";
