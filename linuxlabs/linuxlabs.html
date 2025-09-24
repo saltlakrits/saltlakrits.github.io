@@ -4,19 +4,39 @@
   <title>Unbooked Linux labs @ LiU</title>
 
 	<script>
-    // detecting user platform to hopefully make the text readable without zooming on phones
-    let platformClass = 'platform-other';
-    const userAgent = navigator.userAgent.toLowerCase();
+		function getPlatform() {
+			// 1. Try the modern, preferred method first
+			if (typeof navigator.userAgentData !== 'undefined' && navigator.userAgentData) {
+				// For Chromium browsers (Chrome, Edge, etc.)
+				const platform = navigator.userAgentData.platform.toLowerCase();
+				if (platform.includes('windows')) return 'platform-windows';
+				if (platform.includes('mac')) return 'platform-mac'; // macOS returns "macOS"
+				if (platform.includes('linux')) return 'platform-linux';
+				if (platform.includes('android')) return 'platform-android';
+				if (navigator.userAgentData.mobile) return 'platform-mobile'; // Generic mobile
+				return 'platform-other';
+			}
 
-    if ((userAgent.includes('linux') && userAgent.includes('mobile')) || userAgent.includes('android') || userAgent.includes('iphone') || userAgent.includes('ipad') || userAgent.includes('ipod')) {
-			// wouldn't it be funny if someone visited on their ipod
-      platformClass = 'platform-phone';
-    }
-    
-    // Add the detected class to the root <html> element
-    document.documentElement.className = platformClass;
-  </script>
+			// 2. If userAgentData is not available, fall back to the classic string method
+			const ua = navigator.userAgent.toLowerCase();
+			if (ua.includes('mac os') || ua.includes('macintosh')) return 'platform-mac';
+			if (ua.includes('windows')) return 'platform-windows';
+			
+			// --- More Robust Android Check for Firefox ---
+			// Firefox on Android reports "Linux" and "Mobile". This is a strong signal.
+			if (ua.includes('android') || (ua.includes('linux') && ua.includes('mobile'))) {
+				return 'platform-android';
+			}
 
+			if (ua.includes('linux')) return 'platform-linux';
+			if (ua.includes('iphone') || ua.includes('ipad') || ua.includes('ipod')) return 'platform-ios';
+			
+			return 'platform-other';
+		}
+
+		// Set the class on the <html> element
+		document.documentElement.className = getPlatform();
+	</script>
 
 	<link rel="stylesheet" href="style.css">
 </head>
