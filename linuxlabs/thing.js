@@ -17,8 +17,8 @@ const AVAILABLE = "rooms";
 // small class for making timespans
 class Timespan {
     constructor(year, month, day, startH, startM, endH, endM) {
-        this.start = new Date(year, month, day, startH, startM);
-        this.end = new Date(year, month, day, endH, endM);
+        this.start = new Date(year, month - 1, day, startH, startM);
+        this.end = new Date(year, month - 1, day, endH, endM);
     }
 
     /** Returns true if this and another timespan overlap */
@@ -29,7 +29,7 @@ class Timespan {
 
 function makeBlocks(date) {
     const year = date.getFullYear();
-    const month = date.getMonth();
+    const month = date.getMonth() + 1;
     const day = date.getDate();
 
     return [
@@ -122,7 +122,7 @@ async function main() {
         const [year, month, day] = booking[DATE].split('-').map(Number);
         const dateKey = `${year}-${String(month).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
         
-        const currentDate = new Date(year, month, day);
+        const currentDate = new Date(year, month - 1, day);
         if (currentDate >= endingDate) {
             break;
         }
@@ -136,7 +136,7 @@ async function main() {
         // If we haven't seen this date before, initialize its structure
         if (!broadDict[dateKey]) {
             broadDict[dateKey] = {};
-            const blocks = makeBlocks(new Date(year, month, day));
+            const blocks = makeBlocks(new Date(year, month - 1, day));
             blocks.forEach((block, i) => {
                 broadDict[dateKey][i] = {
                     [TS]: block,
