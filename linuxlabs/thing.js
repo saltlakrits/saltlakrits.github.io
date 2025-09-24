@@ -77,7 +77,7 @@ function showAvailableRooms(bigDict) {
         returnString += `[[${dateKey}]]\n`;
         const sortedBlocks = Object.keys(bigDict[dateKey]).sort((a, b) => a - b);
         for (const blockKey of sortedBlocks) {
-            returnString += intToBlock(parseInt(blockKey)) + \n;
+            returnString += intToBlock(parseInt(blockKey)) + "\n";
             const availableRooms = bigDict[dateKey][blockKey][AVAILABLE];
             if (availableRooms.length > 0) {
                 returnString += availableRooms.join("\n");
