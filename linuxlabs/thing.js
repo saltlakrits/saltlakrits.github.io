@@ -14,7 +14,7 @@ const ROOM = 6;
 const TS = "timespan";
 const AVAILABLE = "rooms";
 
-// small class for making timespans
+// small class for making timespans and seeing if they overlap
 class Timespan {
     constructor(year, month, day, startH, startM, endH, endM) {
         this.start = new Date(year, month - 1, day, startH, startM);
@@ -27,6 +27,7 @@ class Timespan {
     }
 }
 
+// returns all the usual lecture timeblocks for the date
 function makeBlocks(date) {
     const year = date.getFullYear();
     const month = date.getMonth() + 1;
@@ -40,7 +41,9 @@ function makeBlocks(date) {
     ];
 }
 
-/** A simple CSV row parser that handles quoted fields */
+// the csv needs to split by comma (obv), but the room column
+// is sometimes quoted if the booking is for more than one room.
+// this takes care of that
 function parseCsvRow(line) {
     const result = [];
     let currentField = '';
@@ -60,6 +63,7 @@ function parseCsvRow(line) {
     return result;
 }
 
+// just matches the index to the time block for printing
 function intToBlock(i) {
     switch (i) {
         case 0: return "[08:15 - 10:00]";
@@ -70,6 +74,9 @@ function intToBlock(i) {
     }
 }
 
+// when all is said and done we want to loop through the map
+// and print out all the rooms that weren't booked during the dates
+// and timeblocks we checked
 function showAvailableRooms(bigDict) {
 		returnString = "";
     const sortedDates = Object.keys(bigDict).sort();
@@ -90,6 +97,7 @@ function showAvailableRooms(bigDict) {
 		document.getElementById('message-container').textContent = returnString;
 }
 
+// matches the Date.getDay() int to a weekday string
 function weekday(i) {
 	switch (i) {
 		case 0: return "Sunday";
@@ -102,6 +110,7 @@ function weekday(i) {
 	}
 }
 
+// ok go
 async function main() {
     // fetch csv
     console.log("Fetching schedule data...");
@@ -143,9 +152,10 @@ async function main() {
         const [endH, endM] = booking[END].split(':').map(Number);
         const ts = new Timespan(year, month, day, startH, startM, endH, endM);
         
+				// cancer javascript regex
         const bookedRooms = booking[ROOM].replace(/^"|"$/g, '').split(',');
 
-        // If we haven't seen this date before, initialize its structure
+        // if we haven't seen this date before, initialize its structure
         if (!broadDict[dateKey]) {
             broadDict[dateKey] = {};
             const blocks = makeBlocks(new Date(year, month - 1, day));
@@ -157,7 +167,7 @@ async function main() {
             });
         }
 
-        // Check for overlaps and remove booked rooms from available list
+        // check for overlaps and remove booked rooms from AVAILABLE list
         for (const blockKey in broadDict[dateKey]) {
             if (broadDict[dateKey][blockKey][TS].overlaps(ts)) {
                 for (const room of bookedRooms) {
@@ -171,7 +181,9 @@ async function main() {
         }
     }
 
+		// and neatly display them
     showAvailableRooms(broadDict);
 }
 
+// make spaceship go!
 main().catch(console.error);
