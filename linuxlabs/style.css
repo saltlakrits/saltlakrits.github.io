@@ -1,5 +1,7 @@
 body {
   font-family: Courier New, monospace, sans-serif;
+	font-size: 16px;
+	line-height: 1.5;
 	font-weight: 400;
   background-color: #252525;
   color: #f0f0f0;
@@ -11,16 +13,6 @@ body {
 
 .platform-ios {
 	font-size: 2rem;
-}
-
-h1 {
-  color: #005a9c; /* A nice blue color */
-  text-align: center;
-}
-
-p {
-  font-size: 16px;
-  line-height: 1.5;
 }
 
 #message-container {
