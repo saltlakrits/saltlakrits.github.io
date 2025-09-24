@@ -61,6 +61,7 @@ function parseCsvRow(line) {
 }
 
 function intToBlock(i) {
+		console.log("calling intToBlock");
     switch (i) {
         case 0: return "[08:15 - 10:00]";
         case 1: return "[10:15 - 12:00]";
@@ -71,6 +72,7 @@ function intToBlock(i) {
 }
 
 function showAvailableRooms(bigDict) {
+		console.log("calling showAvailableRooms");
     const sortedDates = Object.keys(bigDict).sort();
     for (const dateKey of sortedDates) {
         console.log(`[[${dateKey}]]`);
@@ -93,7 +95,7 @@ async function main() {
     console.log("Fetching schedule data...");
     const response = await fetch(URL);
     const text = await response.text();
-		console.log("Fetched data, continuing")
+		console.log("Fetched data, continuing");
     const unprocessedCsv = text.split('\n');
 
     // make ending date
