@@ -93,6 +93,7 @@ async function main() {
     console.log("Fetching schedule data...");
     const response = await fetch(URL);
     const text = await response.text();
+		console.log("Fetched data, continuing")
     const unprocessedCsv = text.split('\n');
 
     // make ending date
