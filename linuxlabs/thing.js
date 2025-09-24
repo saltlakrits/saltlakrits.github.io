@@ -1,7 +1,7 @@
 // schedule.js
 
 // constants
-const URL = "../data/schedule.csv";
+const URL = "./data/schedule.csv";
 const DAYS = 1;
 
 // column indices
