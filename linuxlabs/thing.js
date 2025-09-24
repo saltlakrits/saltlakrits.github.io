@@ -87,7 +87,8 @@ function showAvailableRooms(bigDict) {
             returnString += "\n";
         }
     }
-		document.getElementById('message-container').textContent = returnString;
+		document.getElementById('message-container').textContent = returnString.replaceAll('\n', '<br>');
+																																						;
 }
 
 async function main() {
