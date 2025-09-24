@@ -77,18 +77,17 @@ function showAvailableRooms(bigDict) {
         returnString += `[[${dateKey}]]\n`;
         const sortedBlocks = Object.keys(bigDict[dateKey]).sort((a, b) => a - b);
         for (const blockKey of sortedBlocks) {
-            returnString += intToBlock(parseInt(blockKey)) + "\n";
+            returnString += intToBlock(parseInt(blockKey)) + \n;
             const availableRooms = bigDict[dateKey][blockKey][AVAILABLE];
             if (availableRooms.length > 0) {
-                returnString += availableRooms.join("\n");
+                returnString += availableRooms.join(\n);
             } else {
-                returnString += "None!\n";
+                returnString += "None!";
             }
-            returnString += "\n";
+            returnString += "\n\n";
         }
     }
-		document.getElementById('message-container').innerHTML = returnString.replaceAll('\n', '<br>');
-																																						;
+		document.getElementById('message-container').textContent = returnString;
 }
 
 async function main() {
@@ -96,7 +95,6 @@ async function main() {
     console.log("Fetching schedule data...");
     const response = await fetch(URL);
     const text = await response.text();
-		console.log("Fetched data, continuing");
     const unprocessedCsv = text.split('\n');
 
     // make ending date
