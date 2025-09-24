@@ -80,7 +80,7 @@ function showAvailableRooms(bigDict) {
             returnString += intToBlock(parseInt(blockKey)) + \n;
             const availableRooms = bigDict[dateKey][blockKey][AVAILABLE];
             if (availableRooms.length > 0) {
-                returnString += availableRooms.join(\n);
+                returnString += availableRooms.join("\n");
             } else {
                 returnString += "None!";
             }
