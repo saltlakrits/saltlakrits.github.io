@@ -5,6 +5,9 @@ html {
 	font-weight: 400;
   background-color: #252525;
   color: #f0f0f0;
+	padding: 1rem;
+	width: 95%;     /* Makes the container flexible and take up most of the screen */
+  max-width: 65ch; /* The key property! Sets a maximum line length. */
 }
 
 .platform-ios,
