@@ -34,7 +34,21 @@
 			return 'platform-other';
 		}
 
-		// Set the class on the <html> element
+    window.onload = function() {
+      const platformClass = getPlatform();
+
+      const userAgentString = navigator.userAgent;
+
+      const debugElement = document.getElementById('debug-info');
+
+      debugElement.innerHTML = 
+        '<strong>Detected Platform Class:</strong> ' + platformClass + 
+        '<hr>' + // A horizontal line for separation
+        '<strong>Full User Agent String:</strong> ' + userAgentString;
+      
+      document.documentElement.className = platformClass;
+    }
+
 		document.documentElement.className = getPlatform();
 	</script>
 
