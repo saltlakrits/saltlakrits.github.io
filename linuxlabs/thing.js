@@ -134,7 +134,7 @@ async function main() {
         dateKey = `${year}-${String(month).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
         
         const currentDate = new Date(year, month - 1, day);
-				dateKey += " " + weekday(currentDate);
+				dateKey += " " + weekday(currentDate.getDay());
         if (currentDate >= endingDate) {
             break;
         }
