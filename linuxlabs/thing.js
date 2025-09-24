@@ -61,7 +61,6 @@ function parseCsvRow(line) {
 }
 
 function intToBlock(i) {
-		console.log("calling intToBlock");
     switch (i) {
         case 0: return "[08:15 - 10:00]";
         case 1: return "[10:15 - 12:00]";
@@ -72,22 +71,23 @@ function intToBlock(i) {
 }
 
 function showAvailableRooms(bigDict) {
-		console.log("calling showAvailableRooms");
+		returnString = "";
     const sortedDates = Object.keys(bigDict).sort();
     for (const dateKey of sortedDates) {
-        console.log(`[[${dateKey}]]`);
+        returnString += `[[${dateKey}]]\n`;
         const sortedBlocks = Object.keys(bigDict[dateKey]).sort((a, b) => a - b);
         for (const blockKey of sortedBlocks) {
-            console.log(intToBlock(parseInt(blockKey)));
+            returnString += intToBlock(parseInt(blockKey)) + "\n";
             const availableRooms = bigDict[dateKey][blockKey][AVAILABLE];
             if (availableRooms.length > 0) {
-                console.log(availableRooms.join("\n"));
+                returnString += availableRooms.join("\n");
             } else {
-                console.log("None!");
+                returnString += "None!\n";
             }
-            console.log("\n");
+            returnString += "\n";
         }
     }
+		document.getElementById('message-container').textContent = returnString;
 }
 
 async function main() {
