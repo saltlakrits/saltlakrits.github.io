@@ -2,6 +2,22 @@
 <html>
 <head>
   <title>Unbooked Linux labs @ LiU</title>
+
+	<script>
+    // detecting user platform to hopefully make the text readable without zooming on phones
+    let platformClass = 'platform-other';
+    const userAgent = navigator.userAgent.toLowerCase();
+
+    if (userAgent.includes('android') || userAgent.includes('iphone') || userAgent.includes('ipad') || userAgent.includes('ipod')) {
+			// wouldn't it be funny if someone visited on their ipod
+      platformClass = 'platform-phone';
+    }
+    
+    // Add the detected class to the root <html> element
+    document.documentElement.className = platformClass;
+  </script>
+
+
 	<link rel="stylesheet" href="style.css">
 </head>
 <body>

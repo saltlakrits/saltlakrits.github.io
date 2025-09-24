@@ -5,6 +5,10 @@ body {
   color: #333;
 }
 
+.platform-phone {
+	font-size: 2rem;
+}
+
 h1 {
   color: #005a9c; /* A nice blue color */
   text-align: center;
