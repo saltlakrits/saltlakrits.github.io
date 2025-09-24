@@ -3,6 +3,19 @@
 <head>
   <title>Unbooked Linux labs @ LiU</title>
 
+<style>
+    /* Styles for the debug box to make it visible */
+    #debug-info {
+      background-color: #ffffe0; /* Light yellow */
+      border: 2px solid #ccc;
+      padding: 10px;
+      margin: 10px;
+      font-family: monospace; /* Easy to read text */
+      font-size: 12px;
+      word-wrap: break-word; /* Prevents long strings from overflowing */
+    }
+  </style>
+
 	<script>
 		function getPlatform() {
 			// 1. Try the modern, preferred method first
@@ -55,6 +68,7 @@
 	<link rel="stylesheet" href="style.css">
 </head>
 <body>
+	<div id="debug-info">Loading debug info...</div>
 
   <h3>Unbooked Linux labs</h3>
   <p id="message-container"></p> <script src="thing.js"></script>
