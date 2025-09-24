@@ -2,7 +2,7 @@
 
 // constants
 const URL = "../data/schedule.csv";
-const DAYS = 1;
+const DAYS = 14;
 
 // column indices
 const DATE = 0;
@@ -90,6 +90,18 @@ function showAvailableRooms(bigDict) {
 		document.getElementById('message-container').textContent = returnString;
 }
 
+function weekday(i) {
+	switch (i) {
+		case 0: return "Sunday";
+		case 1: return "Monday";
+		case 2: return "Tuesday";
+		case 3: return "Wednesday";
+		case 4: return "Thursday";
+		case 5: return "Friday";
+		case 6: return "Saturday";
+	}
+}
+
 async function main() {
     // fetch csv
     console.log("Fetching schedule data...");
@@ -119,9 +131,10 @@ async function main() {
 
         const booking = parseCsvRow(line);
         const [year, month, day] = booking[DATE].split('-').map(Number);
-        const dateKey = `${year}-${String(month).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
+        dateKey = `${year}-${String(month).padStart(2, '0')}-${String(day).padStart(2, '0')}`;
         
         const currentDate = new Date(year, month - 1, day);
+				dateKey += " " + weekday(currentDate);
         if (currentDate >= endingDate) {
             break;
         }
