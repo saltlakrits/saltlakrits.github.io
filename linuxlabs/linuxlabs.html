@@ -8,7 +8,7 @@
     let platformClass = 'platform-other';
     const userAgent = navigator.userAgent.toLowerCase();
 
-    if (userAgent.includes('android') || userAgent.includes('iphone') || userAgent.includes('ipad') || userAgent.includes('ipod')) {
+    if ((userAgent.includes('linux') && ua.includes('mobile')) || userAgent.includes('android') || userAgent.includes('iphone') || userAgent.includes('ipad') || userAgent.includes('ipod')) {
 			// wouldn't it be funny if someone visited on their ipod
       platformClass = 'platform-phone';
     }
