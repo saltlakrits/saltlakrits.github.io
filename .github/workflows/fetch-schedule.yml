@@ -1,0 +1,37 @@
+# .github/workflows/fetch-schedule.yml
+
+name: Fetch Schedule CSV
+
+# Controls when the action will run
+on:
+  # Runs on a schedule (e.g., twice a day at 6:00 and 18:00 UTC)
+  schedule:
+    - cron: '0 6,18 * * *'
+  
+  # Allows you to run this workflow manually from the Actions tab
+  workflow_dispatch:
+
+jobs:
+  fetch-and-commit:
+    runs-on: ubuntu-latest
+    steps:
+      # Step 1: Check out your repository's code
+      - name: Check out repo
+        uses: actions/checkout@v4
+
+      # Step 2: Fetch the CSV data using curl and save it to a file
+      # The file will be placed in a 'data' folder for organization
+      - name: Fetch CSV data
+        run: |
+          mkdir -p data
+          curl -o data/schedule.csv 'https://cloud.timeedit.net/liu/web/schema/ri16YXQ2511Z50Qm0X004536y9Y130935Y85Y8gQ9075X64Z51492Y1569X55496Y8X86984Y8941534XY81X9145X69585Y9245659159685889XY1466Y8991X8X58Y97145885940Y684619998YX8588YX644921596Y1X8951X4841965986X89961Y49Y5889413X84X19Y9996589Y157X986064559Y894Y5499Y519918XX69568495X17v9XQ5497Q5QbnyY3Z2fZ700.csv'
+
+      # Step 3: Commit and push the changes to your repository
+      - name: Commit and push if there are changes
+        run: |
+          git config --global user.name "GitHub Actions Bot"
+          git config --global user.email "actions@github.com"
+          git add data/schedule.csv
+          # The following command commits only if there are changes
+          git diff-index --quiet HEAD || git commit -m "Update schedule.csv"
+          git push
