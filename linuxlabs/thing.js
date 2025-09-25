@@ -112,7 +112,7 @@ function weekday(i) {
 	}
 }
 
-function populatedMap() {
+function populatedMap(rooms) {
 	const availableMap = {};
 
 	date = new Date();
