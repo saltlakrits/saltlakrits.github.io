@@ -14,6 +14,8 @@ const ROOM = 6;
 const TS = "timespan";
 const AVAILABLE = "rooms";
 
+// FIXME Change to temporal, apparently Date is legacy smh
+
 // small class for making timespans and seeing if they overlap
 class Timespan {
     constructor(year, month, day, startH, startM, endH, endM) {
@@ -110,6 +112,28 @@ function weekday(i) {
 	}
 }
 
+function populatedMap() {
+	const availableMap = {};
+
+	date = new Date();
+	for (let i = 0; i < DAYS; i++) {
+
+		date.setDate(date.getDate() + i);
+		dateKey = `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, '0')}-${String(date.getDate()).padStart(2, '0')}`;
+
+		availableMap[dateKey] = {};
+		const blocks = makeBlocks(date);
+		blocks.forEach((block, i) => {
+				availableMap[dateKey][i] = {
+						[TS]: block,
+						[AVAILABLE]: [...ROOMS] // Create a copy of the rooms list
+				};
+		});
+	}
+
+	return availableMap;
+}
+
 // ok go
 async function main() {
     // fetch csv
@@ -132,11 +156,8 @@ async function main() {
     }
     const ROOMS = Array.from(roomSet).sort();
 
-    const broadDict = {};
+    const availableMap = populatedMap();
     const csvDataRows = unprocessedCsv.slice(4);
-
-	  // FIXME
-		var lastDate = null;
 
     for (const line of csvDataRows) {
         if (!line) continue;
@@ -158,48 +179,15 @@ async function main() {
 				// cancer javascript regex
         const bookedRooms = booking[ROOM].replace(/^"|"$/g, '').split(',');
 
-				// FIXME 'quick' solution for skipping over completely unbooked days
-				if (lastDate !== null && (currentDate.getDay() != lastDate.getDay() || currentDate.getDay() != (lastDate.getDay() + 1) % 6)) {
-					var tempDate = new Date(lastDate.getYear(), lastDate.getMonth(), lastDate.getDate() + 1);
-
-					while (tempDate.getTime() != currentDate.getTime()) {
-						tempKey = `${tempDate.getFullYear()}-${String(tempDate.getMonth() + 1).padStart(2, '0')}-${String(tempDate.getDate()).padStart(2, '0')}`;
-						tempKey += " " + weekday(tempDate.getDay());
-
-
-						// FIXME code repetition
-						// we insert "empty days" full of unbooked rooms until we reach the current date
-						broadDict[tempKey] = {};
-						const blocks = makeBlocks(new Date(tempDate.getFullYear(), tempDate.getMonth(), tempDate.getDate()));
-						blocks.forEach((block, i) => {
-								broadDict[tempKey][i] = {
-										[TS]: block,
-										[AVAILABLE]: [...ROOMS] // Create a copy of the rooms list
-								};
-						});
-
-						// if the date becomes weird (like 32nd of some month) it should simply roll over
-						tempDate = new Date(tempDate.getFullYear(), tempDate.getMonth(), tempDate.getDate() + 1);
-					}
-				}
-
         // if we haven't seen this date before, initialize its structure
-        if (!broadDict[dateKey]) {
-            broadDict[dateKey] = {};
-            const blocks = makeBlocks(new Date(year, month - 1, day));
-            blocks.forEach((block, i) => {
-                broadDict[dateKey][i] = {
-                    [TS]: block,
-                    [AVAILABLE]: [...ROOMS] // Create a copy of the rooms list
-                };
-            });
+        if (!availableMap[dateKey]) {
         }
 
         // check for overlaps and remove booked rooms from AVAILABLE list
-        for (const blockKey in broadDict[dateKey]) {
-            if (broadDict[dateKey][blockKey][TS].overlaps(ts)) {
+        for (const blockKey in availableMap[dateKey]) {
+            if (availableMap[dateKey][blockKey][TS].overlaps(ts)) {
                 for (const room of bookedRooms) {
-                    const available = broadDict[dateKey][blockKey][AVAILABLE];
+                    const available = availableMap[dateKey][blockKey][AVAILABLE];
                     const index = available.indexOf(room);
                     if (index > -1) {
                         available.splice(index, 1);
@@ -207,12 +195,10 @@ async function main() {
                 }
             }
         }
-				// FIXME
-				lastDate = currentDate;
     }
 
 		// and neatly display them
-    showAvailableRooms(broadDict);
+    showAvailableRooms(availableMap);
 }
 
 // make spaceship go!
