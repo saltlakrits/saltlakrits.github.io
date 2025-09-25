@@ -115,7 +115,7 @@ function weekday(i) {
 function populatedMap() {
 	const availableMap = {};
 
-	date = new Date();
+	date = new Date(rooms);
 	for (let i = 0; i < DAYS; i++) {
 
 		date.setDate(date.getDate() + i);
@@ -126,7 +126,7 @@ function populatedMap() {
 		blocks.forEach((block, i) => {
 				availableMap[dateKey][i] = {
 						[TS]: block,
-						[AVAILABLE]: [...ROOMS] // Create a copy of the rooms list
+						[AVAILABLE]: [...rooms] // Create a copy of the rooms list
 				};
 		});
 	}
@@ -156,7 +156,7 @@ async function main() {
     }
     const ROOMS = Array.from(roomSet).sort();
 
-    const availableMap = populatedMap();
+    const availableMap = populatedMap(ROOMS);
     const csvDataRows = unprocessedCsv.slice(4);
 
     for (const line of csvDataRows) {
@@ -178,10 +178,6 @@ async function main() {
         
 				// cancer javascript regex
         const bookedRooms = booking[ROOM].replace(/^"|"$/g, '').split(',');
-
-        // if we haven't seen this date before, initialize its structure
-        if (!availableMap[dateKey]) {
-        }
 
         // check for overlaps and remove booked rooms from AVAILABLE list
         for (const blockKey in availableMap[dateKey]) {
