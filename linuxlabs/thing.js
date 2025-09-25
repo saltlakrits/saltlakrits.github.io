@@ -1,7 +1,8 @@
 // console.log(document.documentElement.className);
 
 // constants
-const URL = "../data/schedule.csv";
+//const URL = "../data/schedule.csv";
+const URL = "https://saltlakrits.github.io/data/schedule.csv";
 const DAYS = 14;
 
 // column indices
@@ -81,22 +82,41 @@ function intToBlock(i) {
 // and timeblocks we checked
 function showAvailableRooms(bigDict) {
 		returnString = "";
+		// big outer container (flex)
+		const container = document.getElementById('container');
+		container.classList.add('outer-flex');
     const sortedDates = Object.keys(bigDict).sort();
+
     for (const dateKey of sortedDates) {
-        returnString += `[[${dateKey}]]\n`;
+				// small inner container
+				const inner = document.createElement('div');
+				inner.classList.add('inner-flex');
+
+				const dateHeader = document.createElement('h2');
+				dateHeader.textContent = `${dateKey}`;
+				container.appendChild(dateHeader);
+
         const sortedBlocks = Object.keys(bigDict[dateKey]).sort((a, b) => a - b);
         for (const blockKey of sortedBlocks) {
-            returnString += intToBlock(parseInt(blockKey)) + "\n";
+						const blockDiv = document.createElement('div');
+						blockDiv.classList.add('block');
+
+						const blockHeader = document.createElement('h3');
+						blockHeader.textContent = intToBlock(parseInt(blockKey));
+						blockDiv.appendChild(blockHeader);
             const availableRooms = bigDict[dateKey][blockKey][AVAILABLE];
+
+						const roomPara = document.createElement('p');
             if (availableRooms.length > 0) {
-                returnString += availableRooms.join("\n");
+                roomPara.textContent = availableRooms.join("\n");
             } else {
-                returnString += "None!";
+                roomPara.textContent = "None!";
             }
-            returnString += "\n\n";
+						blockDiv.appendChild(roomPara);
+						inner.appendChild(blockDiv);
         }
+				container.appendChild(inner);
     }
-		document.getElementById('message-container').textContent = returnString;
 }
 
 // matches the Date.getDay() int to a weekday string
