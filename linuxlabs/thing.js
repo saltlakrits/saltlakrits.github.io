@@ -1,8 +1,9 @@
 // console.log(document.documentElement.className);
 
 // constants
-//const URL = "../data/schedule.csv";
-const URL = "https://saltlakrits.github.io/data/schedule.csv";
+const URL = "../data/schedule.csv";
+// if local
+//const URL = "https://saltlakrits.github.io/data/schedule.csv";
 const DAYS = 14;
 
 // column indices
