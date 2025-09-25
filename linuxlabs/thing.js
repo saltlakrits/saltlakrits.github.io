@@ -117,7 +117,7 @@ function populatedMap(rooms) {
 
 
 	const startDate = new Date();
-	let date;
+	let date = new Date();
 	for (let i = 0; i < DAYS; i++) {
 
 		date.setDate(startDate.getDate() + i);
