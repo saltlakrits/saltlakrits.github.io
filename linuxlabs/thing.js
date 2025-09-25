@@ -135,6 +135,7 @@ async function main() {
     const broadDict = {};
     const csvDataRows = unprocessedCsv.slice(4);
 
+	  // FIXME
 		var lastDate = null;
 
     for (const line of csvDataRows) {
@@ -157,21 +158,21 @@ async function main() {
 				// cancer javascript regex
         const bookedRooms = booking[ROOM].replace(/^"|"$/g, '').split(',');
 
-				// 'quick' solution for skipping over completely unbooked days
+				// FIXME 'quick' solution for skipping over completely unbooked days
 				if (lastDate !== null && (currentDate.getDay() != lastDate.getDay() || currentDate.getDay() != (lastDate.getDay() + 1) % 6)) {
 					var tempDate = new Date(lastDate.getYear(), lastDate.getMonth(), lastDate.getDate() + 1);
 
 					while (tempDate.getTime() != currentDate.getTime()) {
-						tempDateKey = `${tempDate.getFullYear()}-${String(tempDate.getMonth() + 1).padStart(2, '0')}-${String(tempDate.getDate()).padStart(2, '0')}`;
-						tempDateKey += " " + weekday(tempDate.getDay());
+						tempKey = `${tempDate.getFullYear()}-${String(tempDate.getMonth() + 1).padStart(2, '0')}-${String(tempDate.getDate()).padStart(2, '0')}`;
+						tempKey += " " + weekday(tempDate.getDay());
 
 
 						// FIXME code repetition
 						// we insert "empty days" full of unbooked rooms until we reach the current date
-						broadDict[tempDateKey] = {};
+						broadDict[tempKey] = {};
 						const blocks = makeBlocks(new Date(tempDate.getFullYear(), tempDate.getMonth(), tempDate.getDate()));
 						blocks.forEach((block, i) => {
-								broadDict[tempDateKey][i] = {
+								broadDict[tempKey][i] = {
 										[TS]: block,
 										[AVAILABLE]: [...ROOMS] // Create a copy of the rooms list
 								};
@@ -206,6 +207,7 @@ async function main() {
                 }
             }
         }
+				// FIXME
 				lastDate = currentDate;
     }
 
