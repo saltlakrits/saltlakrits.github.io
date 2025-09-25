@@ -157,7 +157,7 @@ async function main() {
 				// cancer javascript regex
         const bookedRooms = booking[ROOM].replace(/^"|"$/g, '').split(',');
 
-				if (currentDate.getDay() != lastDate.getDay() || currentDate.getDay() != (lastDate.getDay() + 1) % 6) {
+				if (lastDate != null && (currentDate.getDay() != lastDate.getDay() || currentDate.getDay() != (lastDate.getDay() + 1) % 6)) {
 					while (lastDate.getTime() != currentDate.getTime()) {
 						lastDateKey = `${lastDate.getFullYear()}-${String(lastDate.getMonth() + 1).padStart(2, '0')}-${String(lastDate.getDate()).padStart(2, '0')}`;
 						lastDateKey += " " + weekday(lastDate.getDay());
