@@ -135,6 +135,8 @@ async function main() {
     const broadDict = {};
     const csvDataRows = unprocessedCsv.slice(4);
 
+		var lastDate;
+
     for (const line of csvDataRows) {
         if (!line) continue;
 
@@ -154,6 +156,28 @@ async function main() {
         
 				// cancer javascript regex
         const bookedRooms = booking[ROOM].replace(/^"|"$/g, '').split(',');
+
+				if (currentDate.getDay() != lastDate.getDay() || currentDate.getDay() != (lastDate.getDay() + 1) % 6) {
+					while (lastDate.getTime() != currentDate.getTime()) {
+						lastDateKey = `${lastDate.getFullYear()}-${String(lastDate.getMonth() + 1).padStart(2, '0')}-${String(lastDate.getDate()).padStart(2, '0')}`;
+						lastDateKey += " " + weekday(lastDate.getDay());
+
+
+						// FIXME code repetition
+						// we insert "empty days" full of unbooked rooms until we reach the current date
+						broadDict[lastDateKey] = {};
+						const blocks = makeBlocks(new Date(lastDate.getFullYear(), lastDate.getMonth(), lastDate.getDate()));
+						blocks.forEach((block, i) => {
+								broadDict[dateKey][i] = {
+										[TS]: block,
+										[AVAILABLE]: [...ROOMS] // Create a copy of the rooms list
+								};
+						});
+
+						// if the date becomes weird (like 32nd of some month) it should simply roll over
+						lastDate = new Date(lastDate.getFullYear(), lastDate.getMonth(), lastDate.getDate() + 1);
+					}
+				}
 
         // if we haven't seen this date before, initialize its structure
         if (!broadDict[dateKey]) {
@@ -179,6 +203,7 @@ async function main() {
                 }
             }
         }
+				lastDate = currentDate;
     }
 
 		// and neatly display them
