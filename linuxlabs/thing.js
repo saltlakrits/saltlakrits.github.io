@@ -135,7 +135,7 @@ async function main() {
     const broadDict = {};
     const csvDataRows = unprocessedCsv.slice(4);
 
-		var lastDate;
+		var lastDate = null;
 
     for (const line of csvDataRows) {
         if (!line) continue;
