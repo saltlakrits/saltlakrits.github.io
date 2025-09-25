@@ -115,10 +115,12 @@ function weekday(i) {
 function populatedMap(rooms) {
 	const availableMap = {};
 
-	date = new Date();
+
+	const startDate = new Date();
+	let date;
 	for (let i = 0; i < DAYS; i++) {
 
-		date.setDate(date.getDate() + i);
+		date.setDate(startDate.getDate() + i);
 		dateKey = `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, '0')}-${String(date.getDate()).padStart(2, '0')}`;
 		dateKey += " " + weekday(date.getDay());
 
