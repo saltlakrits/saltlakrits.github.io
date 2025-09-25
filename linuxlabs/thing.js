@@ -168,7 +168,7 @@ async function main() {
 						broadDict[lastDateKey] = {};
 						const blocks = makeBlocks(new Date(lastDate.getFullYear(), lastDate.getMonth(), lastDate.getDate()));
 						blocks.forEach((block, i) => {
-								broadDict[dateKey][i] = {
+								broadDict[lastDateKey][i] = {
 										[TS]: block,
 										[AVAILABLE]: [...ROOMS] // Create a copy of the rooms list
 								};
