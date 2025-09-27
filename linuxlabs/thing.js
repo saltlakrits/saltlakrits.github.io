@@ -141,6 +141,7 @@ function populatedMap(rooms) {
 	let date = new Date();
 	for (let i = 0; i < DAYS; i++) {
 
+		date = startDate;
 		date.setDate(startDate.getDate() + i);
 		dateKey = `${date.getFullYear()}-${String(date.getMonth() + 1).padStart(2, '0')}-${String(date.getDate()).padStart(2, '0')}`;
 		dateKey += " " + weekday(date.getDay());
