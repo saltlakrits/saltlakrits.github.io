@@ -63,7 +63,7 @@ Startdatum,Starttid,Slutdatum,Sluttid,Kurs,Undervisningstyp,Lokal,Kartlänk,Lär
 2025-10-17,15:15,2025-10-17,17:00,TDDE23,Laboration,SU12,https://use.mazemap.com/?campusid=742&sharepoitype=identifier&sharepoi=E0007002%3A3C%3A466,Linnéa Lindblom,D1.b,Grupp 13,,
 2025-10-17,15:15,2025-10-17,17:00,TDDE23,Laboration,SU13,https://use.mazemap.com/?campusid=742&sharepoitype=identifier&sharepoi=E0007002%3A3B%3A461F,Hampuz Togeretz,D1.b,Grupp 15,,
 2025-10-17,15:15,2025-10-17,17:00,TDDE23,Laboration,SU14,https://use.mazemap.com/?campusid=742&sharepoitype=identifier&sharepoi=E0007002%3A3B%3A469,Christopher Claesson,D1.c,Grupp 17,,
-2025-10-20,07:00,2025-10-20,14:00,,Datortenta,SU17/18,https://use.mazemap.com/?campusid=742&sharepoitype=identifier&sharepoi=E0007002%3A3C%3A484,,,,,
+2025-10-20,07:00,2025-10-20,14:00,,Datortenta,"SU15/16,SU17/18","https://use.mazemap.com/?campusid=742&sharepoitype=identifier&sharepoi=E0007002%3A3C%3A472,https://use.mazemap.com/?campusid=742&sharepoitype=identifier&sharepoi=E0007002%3A3C%3A484",,,,,
 2025-10-20,08:15,2025-10-20,10:00,"726A88,TDDD04",Laboration,Asgård,https://use.mazemap.com/?campusid=742&sharepoitype=identifier&sharepoi=E0007002%3A325%3A224,Valency Colaco,CS2,Grupp 1,Lab Demo,
 2025-10-20,08:15,2025-10-20,10:00,TDDD04,Laboration,Egypten,https://use.mazemap.com/?campusid=742&sharepoitype=identifier&sharepoi=E0007002%3A325%3A234,Willem Meijer,CS2,Grupp 2,Lab Demo,
 2025-10-20,08:15,2025-10-20,10:00,TDDD04,Laboration,Olympen,https://use.mazemap.com/?campusid=742&sharepoitype=identifier&sharepoi=E0007002%3A325%3A202,Mohsen Asgari,CS2,Grupp 3,Lab Demo,
