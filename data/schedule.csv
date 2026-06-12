@@ -6,20 +6,20 @@
 <meta http-equiv="X-UA-Compatible" content="IE=edge" />
 <meta name="application-name" content="TimeEdit"/> 
 <meta name="msapplication-TileColor" content="#00824c"/> 
-<meta name="msapplication-TileImage" content="/static/9.66_1543/iepinned.png"/>
-<link rel="icon" type="image/png" href="/static/9.66_1543/iepinned.png"/>
+<meta name="msapplication-TileImage" content="/static/9.66.2_1216/iepinned.png"/>
+<link rel="icon" type="image/png" href="/static/9.66.2_1216/iepinned.png"/>
 <meta name="theme-color" content="#00824c"/>  <meta name = "viewport" content = "initial-scale = 1.0">
   <title>Linköpings universitet </title>
-  <!-- 9.66 Date: 20260526 1543 Build: 8.69.1-532-g044fe84c. APIMethods: d0dcb31. API: 85c5a71. -->
+  <!-- 9.66.2 Date: 20260612 1216 Build: 8.69.1-534-g7c54d45b. APIMethods: d0dcb31. API: 85c5a71. -->
   <style type="text/css">
 @font-face {
   font-family: 'MontserratBold';
-  src: url('/static/9.66_1543/fonts/SourceSans3-SemiBold.ttf') format('truetype');
+  src: url('/static/9.66.2_1216/fonts/SourceSans3-SemiBold.ttf') format('truetype');
 }
 
 @font-face {
   font-family: 'Lato';
-  src: url('/static/9.66_1543/fonts/SourceSans3-Regular.ttf') format('truetype');
+  src: url('/static/9.66.2_1216/fonts/SourceSans3-Regular.ttf') format('truetype');
 }
 
   body {
@@ -88,7 +88,7 @@ input[type=button]:active, input[type=submit]:active, button:active {
   }
   
   .globe {
-    background-image: url("/static/9.66_1543/tesolid.svg");
+    background-image: url("/static/9.66.2_1216/tesolid.svg");
     width: 110px;
     background-size: 100%;
     background-repeat: no-repeat;
